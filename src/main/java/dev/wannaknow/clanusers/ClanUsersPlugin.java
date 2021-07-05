@@ -34,19 +34,26 @@ public class ClanUsersPlugin extends Plugin
 
 	private ClanUsersPanel panel;
 
+	private NavigationButton navButton;
+
 	@Override
-	protected void startUp() {
+	protected void startUp() throws Exception {
 		panel = new ClanUsersPanel(this);
 		final BufferedImage icon = ImageUtil.loadImageResource(getClass(), ICON_FILE);
 
-		NavigationButton navigationButton = NavigationButton.builder()
+		navButton = NavigationButton.builder()
 				.tooltip(PLUGIN_NAME)
 				.icon(icon)
 				.priority(6)
 				.panel(panel)
 				.build();
 
-		clientToolbar.addNavigation(navigationButton);
+		clientToolbar.addNavigation(navButton);
+	}
+
+	@Override
+	protected void shutDown() throws Exception {
+		clientToolbar.removeNavigation(navButton);
 	}
 
 	public void copyRankedFriendsChatUsernames() {
