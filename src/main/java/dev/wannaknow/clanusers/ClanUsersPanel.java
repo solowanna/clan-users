@@ -28,13 +28,25 @@ public class ClanUsersPanel extends PluginPanel {
             plugin.copyFriendsChatUsernames();
         });
 
-        JButton allCCbutton = new JButton("Copy all CC usernames");
+        JButton onlineCCbutton = new JButton("Copy online CC usernames");
+        onlineCCbutton.addActionListener(l -> {
+            plugin.copyOnlineClanChatUsernames();
+        });
+
+        JButton allCCbutton = new JButton("Copy CC usernames");
         allCCbutton.addActionListener(l -> {
             plugin.copyClanChatUsernames();
         });
 
+        JButton guestCCbutton = new JButton("Copy Guest usernames");
+        guestCCbutton.addActionListener(l -> {
+            plugin.copyGuestChatUsernames();
+        });
+
         add(rankedFCbutton);
         add(allFCbutton);
+        add(onlineCCbutton);
         add(allCCbutton);
+        add(guestCCbutton);
     }
 }

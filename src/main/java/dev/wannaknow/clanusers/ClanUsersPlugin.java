@@ -4,6 +4,8 @@ import javax.inject.Inject;
 import net.runelite.api.*;
 import net.runelite.api.clan.ClanChannel;
 import net.runelite.api.clan.ClanChannelMember;
+import net.runelite.api.clan.ClanMember;
+import net.runelite.api.clan.ClanSettings;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.ClientToolbar;
@@ -83,12 +85,36 @@ public class ClanUsersPlugin extends Plugin
 		}
 	}
 
-	public void copyClanChatUsernames() {
+	public void copyOnlineClanChatUsernames() {
 		final ClanChannel clanChannel = client.getClanChannel();
 
 		if(clanChannel != null) {
 			String names = "";
 			for(ClanChannelMember member : clanChannel.getMembers()) {
+				names += member.getName()+"\n";
+			}
+			copyStringToClipboard(names);
+		}
+	}
+
+	public void copyClanChatUsernames() {
+		final ClanSettings clanChannel = client.getClanSettings();
+
+		if(clanChannel != null) {
+			String names = "";
+			for(ClanMember member : clanChannel.getMembers()) {
+				names += member.getName()+"\n";
+			}
+			copyStringToClipboard(names);
+		}
+	}
+
+	public void copyGuestChatUsernames() {
+		final ClanSettings clanChannel = client.getGuestClanSettings();
+
+		if(clanChannel != null) {
+			String names = "";
+			for(ClanMember member : clanChannel.getMembers()) {
 				names += member.getName()+"\n";
 			}
 			copyStringToClipboard(names);
