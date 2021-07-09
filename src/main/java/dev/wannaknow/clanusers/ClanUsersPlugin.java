@@ -2,10 +2,7 @@ package dev.wannaknow.clanusers;
 
 import javax.inject.Inject;
 import net.runelite.api.*;
-import net.runelite.api.clan.ClanChannel;
-import net.runelite.api.clan.ClanChannelMember;
-import net.runelite.api.clan.ClanMember;
-import net.runelite.api.clan.ClanSettings;
+import net.runelite.api.clan.*;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.ClientToolbar;
@@ -91,7 +88,22 @@ public class ClanUsersPlugin extends Plugin
 		if(clanChannel != null) {
 			String names = "";
 			for(ClanChannelMember member : clanChannel.getMembers()) {
-				names += member.getName()+"\n";
+				names += member.getName() + "\n";
+			}
+			copyStringToClipboard(names);
+		}
+	}
+
+	public void copyOnlineRankedClanChatUsernames() {
+		final ClanChannel clanChannel = client.getClanChannel();
+
+		if(clanChannel != null) {
+			String names = "";
+			for(ClanChannelMember member : clanChannel.getMembers()) {
+
+				if(member.getRank() != ClanRank.GUEST) {
+					names += member.getName() + "\n";
+				}
 			}
 			copyStringToClipboard(names);
 		}

@@ -33,6 +33,11 @@ public class ClanUsersPanel extends PluginPanel {
             plugin.copyOnlineClanChatUsernames();
         });
 
+        JButton onlineRankedCCbutton = new JButton("Copy online ranked CC usernames");
+        onlineRankedCCbutton.addActionListener(l -> {
+            plugin.copyOnlineRankedClanChatUsernames();
+        });
+
         JButton allCCbutton = new JButton("Copy CC usernames");
         allCCbutton.addActionListener(l -> {
             plugin.copyClanChatUsernames();
@@ -46,6 +51,7 @@ public class ClanUsersPanel extends PluginPanel {
         add(rankedFCbutton);
         add(allFCbutton);
         add(onlineCCbutton);
+        add(onlineRankedCCbutton);
         add(allCCbutton);
         add(guestCCbutton);
     }
